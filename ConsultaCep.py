@@ -16,19 +16,14 @@ def limpar():
 
 def get_cep():
     try:
-        if input_cep.get() == 'criador':
-            messagebox.showinfo('Olá!', '''Me chamo Alisson e esse é meu primeiro projeto! 
-É construído totalmente com Python e estou sempre em  busca de melhorá-lo, obrigado!''')
-
-        else:
-            url = get(f'http://viacep.com.br/ws/{input_cep.get()}/json/'.lower())
-            resultado = url.json()
-            texto_logradouro['text'] = resultado['logradouro']
-            texto_bairro['text'] = resultado['bairro']
-            texto_cidade['text'] = resultado['localidade']
-            texto_estado['text'] = resultado['uf']
-            texto_complemento['text'] = resultado['complemento'] if len(resultado['complemento']) > 0 else '--'
-            texto_ddd['text'] = resultado['ddd']
+        url = get(f'http://viacep.com.br/ws/{input_cep.get()}/json/'.lower())
+        resultado = url.json()
+        texto_logradouro['text'] = resultado['logradouro']
+        texto_bairro['text'] = resultado['bairro']
+        texto_cidade['text'] = resultado['localidade']
+        texto_estado['text'] = resultado['uf']
+        texto_complemento['text'] = resultado['complemento'] if len(resultado['complemento']) > 0 else '--'
+        texto_ddd['text'] = resultado['ddd']
 
     except json.decoder.JSONDecodeError:
         messagebox.showerror('Erro!', f'CEP "{input_cep.get()}" não encontrado!')
